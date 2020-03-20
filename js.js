@@ -2,11 +2,12 @@ window.onload = function() {
     createGrid();
 };
 
-document.addEventListener("keypress", (event) => {
+
+$(document).keyup(function(event){
       if (event.key == "r"){
     createGrid();
 }
-});
+})
 
 
 
@@ -17,11 +18,15 @@ var color = colorPalette[0];
 
 
 function createGrid() {
-    var grid = document.getElementById("grid");
-    grid.addEventListener('mousedown', (event) => {
-        click = true;
-    });
-    grid.addEventListener('mouseup', (event) => {
+    var $grid = $("#grid");
+    $(grid).mousedown(function(event){
+      click = true;
+});
+        $(grid).mousedown(function(event){
+      click = false;
+});
+
+    $(grid).mouseup(function(event){
         click = false;
     });
     for(var i = 0; i < 50; i++) {
