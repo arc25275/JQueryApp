@@ -1,0 +1,22 @@
+#grid {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    left: 50%;
+    margin-left: -400px;
+    top: 50%;
+    margin-top: -300px;
+}
+
+.unit {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: black;
+    border: 1px solid white;
+}
+
+#info {
+    position: absolute;
+    right: 0px;
+}
