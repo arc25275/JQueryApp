@@ -1,10 +1,13 @@
-$(document).ready(function() {
+$(document).ready(function () {
     createGrid();
 });
 
+var start = true;
 
 $(document).keyup(function (event) {
     if (event.key == "r") {
+        start = false;
+        $("#grid").empty();
         createGrid();
     }
 })
@@ -38,7 +41,11 @@ function createGrid() {
             $("#grid").append(box);
         }
     }
-    changePalette();
+    if (start) {
+        changePalette();
+    } else {
+        start = true;
+    }
 }
 
 
