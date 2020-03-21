@@ -1,15 +1,13 @@
-window.onload = function() {
+$(document).ready(function() {
     createGrid();
-};
+});
 
 
-$(document).keyup(function(event){
-      if (event.key == "r"){
-    createGrid();
-}
+$(document).keyup(function (event) {
+    if (event.key == "r") {
+        createGrid();
+    }
 })
-
-
 
 var click;
 
@@ -18,31 +16,26 @@ var color = colorPalette[0];
 
 
 function createGrid() {
-    var $grid = $("#grid");
-    $(grid).mousedown(function(event){
-      click = true;
-});
-        $(grid).mousedown(function(event){
-      click = false;
-});
-
-    $(grid).mouseup(function(event){
+    $("#grid").mousedown(function (event) {
+        click = true;
+    });
+    $("#grid").mouseup(function (event) {
         click = false;
     });
-    for(var i = 0; i < 50; i++) {
-        for(var j = 0; j < 50; j++) {
-            var box = document.createElement("box");
-            box.setAttribute("class", "unit");
-            box.setAttribute("id", i+","+j);
-            box.style.left = i*16+"px";
-            box.style.top = j*16+"px";
-            box.addEventListener('mouseover', (event) => {
-                if(click){
+    for (var i = 0; i < 50; i++) {
+        for (var j = 0; j < 50; j++) {
+            var box = $("<box></box>");
+            box.attr("class", "unit");
+            box.attr("id", i + "," + j);
+            box.css("left", i * 16 + "px");
+            box.css("top", j * 16 + "px");
+            box.on("mouseover", (event) => {
+                if (click) {
                     changeColor(event);
                 }
 
             });
-            grid.appendChild(box);
+            $("#grid").append(box);
         }
     }
     changePalette();
@@ -50,13 +43,13 @@ function createGrid() {
 
 
 function changePalette() {
-    document.addEventListener('dblclick', (event) => {
-        if(color == colorPalette[5]) {
+    $(document).on('dblclick', (event) => {
+        if (color == colorPalette[5]) {
             color = colorPalette[0];
         } else {
-            for(var i = 5; i >= 0; i--) {
-                if(color == colorPalette[i] && i < 5) {
-                    color = colorPalette[i+1];
+            for (var i = 5; i >= 0; i--) {
+                if (color == colorPalette[i] && i < 5) {
+                    color = colorPalette[i + 1];
                 }
             }
         }
@@ -64,7 +57,7 @@ function changePalette() {
     });
 }
 
-function changeColor(event) {
-    let cell = event.target;
-    cell.style.background = color;
+function changeColor(e) {
+    let cell = $(e.target);
+    cell.css("background", color);
 }
